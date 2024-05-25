@@ -10,17 +10,21 @@ const targetedLine = document.getElementById("stop-line");
 let light = "yellow";
 
 window.onload = function () {
-  readyLight.style.backgroundColor = light;
-  stopLight.style.backgroundColor = "";
-  goLight.style.backgroundColor = "";
+  setTimeout(() => {
+    readyLight.style.backgroundColor = light;
+    stopLight.style.backgroundColor = "";
+    goLight.style.backgroundColor = "";
+  }, 5000);
   car.classList.remove("paused");
   tyre.classList.remove("paused");
   frontTyre.classList.remove("paused");
 };
 
 setInterval(() => {
+  const d = new Date();
   if (light == "yellow") {
     setTimeout(() => {
+      console.log("Red", d.getTime());
       stopLight.style.backgroundColor = "red";
       readyLight.style.backgroundColor = "";
       goLight.style.backgroundColor = "";
@@ -32,8 +36,8 @@ setInterval(() => {
       }, 510);
     }, 500);
   } else if (light == "red") {
-    console.log("green");
     setTimeout(() => {
+      console.log("Green", d.getTime());
       goLight.style.backgroundColor = "green";
       stopLight.style.backgroundColor = "";
       readyLight.style.backgroundColor = "";
@@ -45,15 +49,17 @@ setInterval(() => {
       }, 500);
     }, 500);
   } else {
-    console.log("yellow");
+    setTimeout(() => {
+      console.log("Yellow", d.getTime());
       readyLight.style.backgroundColor = "yellow";
       goLight.style.backgroundColor = "";
       stopLight.style.backgroundColor = "";
       // setTimeout(() => {
-        car.classList.remove("paused");
-        tyre.classList.remove("paused");
-        frontTyre.classList.remove("paused");
-        light = "yellow";
-    // }, 100);
+      car.classList.remove("paused");
+      tyre.classList.remove("paused");
+      frontTyre.classList.remove("paused");
+      light = "yellow";
+      // }, 100);
+    }, 1700);
   }
 }, 3000);
